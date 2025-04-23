@@ -6,7 +6,7 @@ import path from "path"
 // Routes
 import productsRouter from '../routes/products.routes.js'
 import cartsRouter from '../routes/carts.routes.js'
-import realTimeProductsRouter from '../routes/realTimeProducts.routes.js'
+import views from '../routes/views.routes.js'
 
 // Configurations
 import configHandlebars from "../configuration/handlebars.config.js"
@@ -34,7 +34,7 @@ configHandlebars(app)
 // Routes
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartsRouter)
-app.use('/', realTimeProductsRouter)
+app.use('/', views)
 app.use( (req, res) => {
     res.status(404).json({error: 'Ruta no encontrada'})
 })
