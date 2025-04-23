@@ -1,0 +1,12 @@
+# Ignora la carpeta node_modules
+node_modules
+
+# Ignora la carpeta node_modules
+mock
+
+#Ignora archivos dentro de data
+/data/*
+!/data/.gitkeep
+
+#Ignoro consignas
+/consigna.txt
