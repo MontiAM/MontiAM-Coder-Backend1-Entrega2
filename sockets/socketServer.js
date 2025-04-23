@@ -5,8 +5,7 @@ const productManager = new ProductManager("./data/products.json");
 const emitError = (socket, event, error) => {
   console.error(`❌ ${event} - Error:`, error.message);
   socket.emit("server:error", { event, message: error.message });
-  
-}
+};
 
 const configSockets = (io) => {
   io.on("connection", async (socket) => {
@@ -19,11 +18,14 @@ const configSockets = (io) => {
       emitError(socket, "loadproducts", error);
     }
 
-    socket.on("client:postproduct", async (data) => {    
+    socket.on("client:postproduct", async (data) => {
       try {
-        const newProduct = await productManager.addProduct(data);        
-        const products = await productManager.getProducts()
-        io.emit("server:loadproducts", products, newProduct);
+        const newProduct = await productManager.addProduct(data);
+        const products = await productManager.getProducts();
+    
+        socket.broadcast.emit("server:loadproducts", products, newProduct);
+    
+        socket.emit("server:productadded", newProduct);
       } catch (error) {
         emitError(socket, "postproduct", error);
       }

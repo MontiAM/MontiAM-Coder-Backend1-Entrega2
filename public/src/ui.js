@@ -10,11 +10,9 @@ const renderProduct = (product) => {
       <p><strong>Stock:</strong> ${product.stock}</p>
       <p><strong>Categoría:</strong> ${product.category}</p>
       <p><strong>Estado:</strong> ${product.status ? 'Disponible' : 'No disponible'}</p>      
+      <p><strong>Imagenes:</strong> ${product.thumbnails.length > 0 ?  product.thumbnails.map(url => `${url}`).join(' - ') : 'Sin imagenes'} </p>
       <hr>
-    `;
-
-    // ${product.thumbnails?.map(url => `<img src="/images/${url}" alt="${product.title}" width="100">`).join('')}
-  
+      `;
     return div;
   };
 
