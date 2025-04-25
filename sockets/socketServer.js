@@ -30,6 +30,19 @@ const configSockets = (io) => {
         emitError(socket, "postproduct", error);
       }
     });
+
+    socket.on("client:deleteproduct", async (productId) => {
+      console.log(productId);
+      try {
+        const deletedProduct = await productManager.deleteProduct(parseInt(productId))         
+        const products = await productManager.getProducts();
+        socket.broadcast.emit("server:loadproducts", products, null, deletedProduct);
+        socket.emit("server:productdeleted", {msg: "Producto eliminado correctamente."});
+
+    } catch (error) {
+      emitError(socket, "productdeleted", error);
+    }
+    })
   });
 };
 

@@ -67,14 +67,20 @@ export default class ProductManager {
     }
     async deleteProduct(id) {
         try {
-            const products = await this.getProducts();
-            const filteredProducts = products.filter( product => product.id !== id)
-    
-            if (filteredProducts.length === products.length ) throw new Error(`Id ${id} no existe.`);
-            await fs.promises.writeFile(this.filePath, JSON.stringify(filteredProducts, null, 2));
-            
+          const products = await this.getProducts();
+          const index = products.findIndex(product => product.id === id);
+      
+          if (index === -1) throw new Error(`Id ${id} no existe.`);
+      
+          const deletedProduct = products[index];
+          products.splice(index, 1); 
+      
+          await fs.promises.writeFile(this.filePath, JSON.stringify(products, null, 2));
+          
+          return deletedProduct;
+      
         } catch (error) {
-            throw new Error(`Error al eliminar producto: ${error.message}`);            
+          throw new Error(`Error al eliminar producto: ${error.message}`);
         }
-    } 
+      }
 }

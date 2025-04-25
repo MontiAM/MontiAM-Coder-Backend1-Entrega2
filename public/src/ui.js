@@ -11,8 +11,16 @@ const renderProduct = (product) => {
       <p><strong>Categoría:</strong> ${product.category}</p>
       <p><strong>Estado:</strong> ${product.status ? 'Disponible' : 'No disponible'}</p>      
       <p><strong>Imagenes:</strong> ${product.thumbnails.length > 0 ?  product.thumbnails.map(url => `${url}`).join(' - ') : 'Sin imagenes'} </p>
-      <hr>
+      <div class="button-container">
+        <button data-id="${product.id}" class="delete-button delete">Eliminar</button>
+      </div>  
       `;
+
+    const btnDelete = div.querySelector('.delete')
+    btnDelete.addEventListener('click', () => {
+      deleteProduct(btnDelete.dataset.id);
+      
+    })
     return div;
   };
 

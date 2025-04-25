@@ -76,6 +76,21 @@ body {
     background-color: #555;
   }
 
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .delete-button {
+    background-color: #cf1010;
+    width: 200px;
+  }
+
+  .delete-button:hover {
+    background-color: #e15454;
+  }
+
+
   #product-list {
     width: 100%;
     max-width: 500px;
@@ -83,19 +98,19 @@ body {
   
   .product-card {
     background-color: white;
-    padding: 20px;
+    padding: 10px;
     width: 100%;
     max-width: 500px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 5px;
+    margin-bottom: 10px;
   }
   
   .product-card h3 {
-    margin: 0 0 8px;
+    margin: 0 0 0px;
     font-size: 20px;
   }
   
